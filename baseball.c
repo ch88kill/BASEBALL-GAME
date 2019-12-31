@@ -7,48 +7,48 @@ char* timeToString(struct tm *t);
 int main() {
     int com[3] = { 0 }; 
     int user[3] = { 0 };
-    int str, ball = 0, pan = 0, i, j, sh; // str: ìŠ¤íŠ¸ë¼ì´í¬ ë³€ìˆ˜ ball: ë³¼ ë³€ìˆ˜ pan: ë¼ìš´ë“œ ìˆ˜ ë³€ìˆ˜ iì™€j: ë°˜ë³µë¬¸ ë³€ìˆ˜ sh: ë©”ë‰´ ë°›ëŠ” ë³€ìˆ˜ 
-    srand((int)time(NULL)); //rand() í•¨ìˆ˜ë¥¼ìœ„í•œ ì„ì˜ì˜ ìˆ˜ ì‹¬ê¸°
+    int str, ball = 0, pan = 0, i, j, sh; // str: ½ºÆ®¶óÀÌÅ© º¯¼ö ball: º¼ º¯¼ö pan: ¶ó¿îµå ¼ö º¯¼ö i¿Íj: ¹İº¹¹® º¯¼ö sh: ¸Ş´º ¹Ş´Â º¯¼ö 
+    srand((int)time(NULL)); //rand() ÇÔ¼ö¸¦À§ÇÑ ÀÓÀÇÀÇ ¼ö ½É±â
     struct tm *t;
     time_t timer;
     FILE *fp;
 
-    timer = time(NULL);    // í˜„ì¬ ì‹œê°ì„ ì´ˆ ë‹¨ìœ„ë¡œ ì–»ê¸°
-    t = localtime(&timer); // ì´ˆ ë‹¨ìœ„ì˜ ì‹œê°„ì„ ë¶„ë¦¬í•˜ì—¬ êµ¬ì¡°ì²´ì— ë„£ê¸°
-    puts("ì•¼êµ¬ ê²Œì„!!!");
+    timer = time(NULL);    // ÇöÀç ½Ã°¢À» ÃÊ ´ÜÀ§·Î ¾ò±â
+    t = localtime(&timer); // ÃÊ ´ÜÀ§ÀÇ ½Ã°£À» ºĞ¸®ÇÏ¿© ±¸Á¶Ã¼¿¡ ³Ö±â
+    puts("¾ß±¸ °ÔÀÓ!!!");
 menu:
-    printf("\n\n\n1.ê·œì¹™ë³´ê¸°\n2.ê²Œì„ì‹œì‘\n3.ê¸°ë¡ ë³´ê¸°\n");
+    printf("\n\n\n1.±ÔÄ¢º¸±â\n2.°ÔÀÓ½ÃÀÛ\n3.±â·Ï º¸±â\n");
     scanf("%d", &sh);
     switch (sh)
     {
     case 1 :
-        printf("\n\n\n            **ê·œì¹™**\nì´ ê²Œì„ì€ ì»´í“¨í„°ê°€ ê³ ë¥¸ ìˆ«ìë¥¼ ë§ì¶”ëŠ” ê²Œì„ì…ë‹ˆë‹¤!\nì»´í“¨í„°ëŠ” 0 ~ 9 ê¹Œì§€ ìˆ«ì 3ê°œë¥¼ ê³ ë¦…ë‹ˆë‹¤!\nìˆ«ìë§Œë§ìœ¼ë©´ ball!! ìœ„ì¹˜ë„ë§ìœ¼ë©´ strike!!\nì…ë ¥ì€ ìˆ«ì ìˆ«ì ìˆ«ì ì…ë‹ˆë‹¤!!\ní˜¸ì˜¥ì‹œë¼ë„ ì´í•´ê°€ì•ˆë¬ìœ¼ë©´ í•œë²ˆ í•´ë³´ì„¸ìš”!\n");
+        printf("\n\n\n            **±ÔÄ¢**\nÀÌ °ÔÀÓÀº ÄÄÇ»ÅÍ°¡ °í¸¥ ¼ıÀÚ¸¦ ¸ÂÃß´Â °ÔÀÓÀÔ´Ï´Ù!\nÄÄÇ»ÅÍ´Â 0 ~ 9 ±îÁö ¼ıÀÚ 3°³¸¦ °í¸¨´Ï´Ù!\n¼ıÀÚ¸¸¸ÂÀ¸¸é ball!! À§Ä¡µµ¸ÂÀ¸¸é strike!!\nÀÔ·ÂÀº ¼ıÀÚ ¼ıÀÚ ¼ıÀÚ ÀÔ´Ï´Ù!!\nÈ£¿Á½Ã¶óµµ ÀÌÇØ°¡¾È‰çÀ¸¸é ÇÑ¹ø ÇØº¸¼¼¿ä!\n");
         puts("start game!\n");
         break;
     case 2 :
-        puts("ë„¤ ì‹œì‘í•©ë‹ˆë‹¤!");
+        puts("³× ½ÃÀÛÇÕ´Ï´Ù!");
         puts("start game!\n");
         break;
     case 3 :
-        puts("í”Œë ˆì´í•œ ê¸°ë¡ì…ë‹ˆë‹¤!");
+        puts("ÇÃ·¹ÀÌÇÑ ±â·ÏÀÔ´Ï´Ù!");
         char ch, c, date[20];
         int lpan, com1, com2, com3;
         fp = fopen("playlist.txt", "rt");
         if (fp == NULL){
-            puts("ê¸°ë¡ì„ ì—¬ëŠ”ëŒ€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤\n ì´ê²Œ ì–´ì°Œëœ ì¼ì´ì£ ? í˜¹ì‹œ ì „ì— í”Œë˜ì´í•œì ì´ ì—†ëŠ”ê²ƒ ì•„ë‹ê¹Œìš”?");
+            puts("±â·ÏÀ» ¿©´Â´ë ½ÇÆĞÇß½À´Ï´Ù\n ÀÌ°Ô ¾îÂîµÈ ÀÏÀÌÁÒ? È¤½Ã Àü¿¡ ÇÃ·¡ÀÌÇÑÀûÀÌ ¾ø´Â°Í ¾Æ´Ò±î¿ä?");
         }else{
             
              while((c = fgetc(fp)) != EOF){
                fseek(fp, -1, SEEK_CUR);
                fscanf(fp, "%d %d %d %d %s", &lpan, &com1, &com2, &com3, date);
-               printf("%díŒ ë§Œì— ì´ê¸°ì…¨ìŠµë‹ˆë‹¤. ì •ë‹µ: %d %d %d %s\n", lpan, com1, com2, com3, date);               
+               printf("%dÆÇ ¸¸¿¡ ÀÌ±â¼Ì½À´Ï´Ù. Á¤´ä: %d %d %d %s\n", lpan, com1, com2, com3, date);               
             }
             sh = 0;
         }
         fclose(fp);
         goto menu;
     default:
-        printf("ë­”ì†Œë¦°ì§„ ëª¨ë¥´ê² ì§€ë§Œ ì¼ë‹¨ ì‹œì‘!!!!!\n");
+        printf("¹º¼Ò¸°Áø ¸ğ¸£°ÚÁö¸¸ ÀÏ´Ü ½ÃÀÛ!!!!!\n");
         break;
     }
     for(i=0; i<3;i++){
@@ -64,9 +64,8 @@ start:
     str = 0;
     ball = 0;
     
-    printf("\n3ê°œì˜ ìˆ«ì ì…ë ¥:");
+    printf("\n3°³ÀÇ ¼ıÀÚ ÀÔ·Â:");
     scanf("%d %d %d", &user[0], &user[1], &user[2]);
-    printf("%d %d %d", com[0], com[1], com[2]);
 
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
@@ -80,7 +79,7 @@ start:
             }
         }
     }
-    printf("\n%dë²ˆì§¸ ë„ì „ì˜ ê²°ê³¼: %dstrike, %dball!!!!!!\n", pan, str, ball);
+    printf("\n%d¹øÂ° µµÀüÀÇ °á°ú: %dstrike, %dball!!!!!!\n", pan, str, ball);
     if (str == 3) {
         fp = fopen("playlist.txt ", "at");
         fprintf(fp, "%d %d %d %d %s\n", pan, com[0], com[1], com[2], timeToString(t));
