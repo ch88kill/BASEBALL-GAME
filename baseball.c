@@ -17,7 +17,7 @@ int main() {
     t = localtime(&timer); // 초 단위의 시간을 분리하여 구조체에 넣기
     puts("야구 게임!!!");
 menu:
-    printf("\n\n\n1.규칙보기\n2.게임시작\n3.기록 보기\n");
+    printf("\n\n\n1.규칙보기\n2.게임시작\n3.기록 보기\n4.게임 종료\n");
     scanf("%d", &sh);
     switch (sh)
     {
@@ -41,12 +41,15 @@ menu:
              while((c = fgetc(fp)) != EOF){
                fseek(fp, -1, SEEK_CUR);
                fscanf(fp, "%d %d %d %d %s", &lpan, &com1, &com2, &com3, date);
-               printf("%d판 만에 이기셨습니다. 정답: %d %d %d %s\n", lpan, com1, com2, com3, date);               
+               printf("%d판 만에 이기셨습니다. 정답: %d %d %d %s\n", lpan, com1, com2, com3, date);   
+               //fseek(fp, 1, SEEK_CUR);            
             }
             sh = 0;
         }
         fclose(fp);
         goto menu;
+    case 4 :
+        return 0;
     default:
         printf("뭔소린진 모르겠지만 일단 시작!!!!!\n");
         break;
@@ -59,6 +62,7 @@ menu:
         } else if ( i ==2 && ((com[0]==com[2]) || (com[1]==com[2])))
             i--;
     }
+    pan = 0;
 start:
     pan++;
     str = 0;
@@ -82,11 +86,11 @@ start:
     printf("\n%d번째 도전의 결과: %dstrike, %dball!!!!!!\n", pan, str, ball);
     if (str == 3) {
         fp = fopen("playlist.txt ", "at");
-        fprintf(fp, "%d %d %d %d %s\n", pan, com[0], com[1], com[2], timeToString(t));
+        fprintf(fp, "\n%d %d %d %d %s", pan, com[0], com[1], com[2], timeToString(t));
         fclose(fp);
-        printf("GAME OVER\n");
+        printf("맞추셨습니다!\n");
         system("pause");
-        return 0;
+        goto menu;
     }
     else
         goto start;
