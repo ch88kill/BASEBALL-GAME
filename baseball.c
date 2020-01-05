@@ -23,7 +23,7 @@ menu:
     {
     case 1 :
         printf("\n\n\n            **규칙**\n이 게임은 컴퓨터가 고른 숫자를 맞추는 게임입니다!\n컴퓨터는 0 ~ 9 까지 숫자 3개를 고릅니다!\n숫자만맞으면 ball!! 위치도맞으면 strike!!\n입력은 숫자 숫자 숫자 입니다!!\n호옥시라도 이해가안됬으면 한번 해보세요!\n");
-        puts("start game!\n");
+        goto menu;
         break;
     case 2 :
         puts("네 시작합니다!");
@@ -35,7 +35,7 @@ menu:
         int lpan, com1, com2, com3;
         fp = fopen("playlist.txt", "rt");
         if (fp == NULL){
-            puts("기록을 여는대 실패했습니다\n 이게 어찌된 일이죠? 혹시 전에 플래이한적이 없는것 아닐까요?");
+            puts("기록을 여는대 실패했습니다\n이게 어찌된 일이죠? 혹시 전에 플래이한적이 없는것 아닐까요?");
         }else{
             
              while((c = fgetc(fp)) != EOF){
